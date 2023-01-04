@@ -1,7 +1,4 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
-import 'package:movieappyogi/models/movie_detail_model.dart';
 
 class MovieAPIService {
   final _dio = Dio();
@@ -62,16 +59,39 @@ class MovieAPIService {
     }
   }
 
-  Future getMovieDetail(int movieId) async {
+  Future getMovieRecommendations(int movieId) async {
     try {
-      Response response = await _dio
-          .get("$url/movie/$movieId?api_key=$apikey&language=$language");
-      MovieDetailModel movieDetail = MovieDetailModel.fromJson(response.data);
-      return movieDetail;
-    } on DioError catch (e) {
-      print(e.response!.statusMessage);
-      print(e.response!.statusCode);
-      print("error message = ${e.message}");
+      final response = await _dio.get(
+          "$url/movie/$movieId/recommendations?api_key=$apikey&language=$language&page=1");
+
+      // print(response);
+      return response;
+    } catch (error, stacktrace) {
+      throw Exception(
+          'Exception accoured: $error with stacktrace: $stacktrace');
+    }
+  }
+
+  Future getMovieTranslation(int movieId) async {
+    try {
+      final response =
+          await _dio.get("$url/movie/$movieId/translations?api_key=$apikey");
+      return response;
+    } catch (error, stacktrace) {
+      throw Exception(
+          'Exception accoured: $error with stacktrace: $stacktrace');
+    }
+  }
+
+  Future getMovieSimiliar(int movieId) async {
+    try {
+      final response = await _dio.get(
+          "$url/movie/$movieId/similar?api_key=$apikey&language=$language&page=1");
+
+      return response;
+    } catch (error, stacktrace) {
+      throw Exception(
+          'Exception accoured: $error with stacktrace: $stacktrace');
     }
   }
 }

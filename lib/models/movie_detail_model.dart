@@ -55,8 +55,8 @@ class MovieDetailModel {
     required this.voteCount,
   });
 
-  bool adult;
-  String backdropPath;
+  bool? adult;
+  String? backdropPath;
   List genreIds;
   int id;
   String originalLanguage;

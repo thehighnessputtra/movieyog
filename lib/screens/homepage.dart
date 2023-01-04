@@ -61,6 +61,7 @@ class _TestingAPIState extends State<TestingAPI> {
                                   navPushTransition(
                                       context,
                                       MovieDetail(
+                                          // translate: ,
                                           idMovie: moviePopular.id,
                                           movieDetail: moviePopular));
                                 },
@@ -86,6 +87,7 @@ class _TestingAPIState extends State<TestingAPI> {
                           itemBuilder: (context, index) {
                             final movieNowPlaying =
                                 value.getListNowPlaying.elementAt(index);
+
                             return GestureDetector(
                                 onTap: () {
                                   navPushTransition(
@@ -116,6 +118,7 @@ class _TestingAPIState extends State<TestingAPI> {
                           itemBuilder: (context, index) {
                             final movieTopRated =
                                 value.getListTopRated.elementAt(index);
+
                             return GestureDetector(
                                 onTap: () {
                                   navPushTransition(
@@ -146,6 +149,7 @@ class _TestingAPIState extends State<TestingAPI> {
                           itemBuilder: (context, index) {
                             final movieUpcoming =
                                 value.getListUpcoming.elementAt(index);
+
                             return GestureDetector(
                                 onTap: () {
                                   navPushTransition(
